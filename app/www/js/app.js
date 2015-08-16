@@ -30,6 +30,7 @@ angular.module('trumpz', ['ionic', 'trumpz.controllers', 'trumpz.services','ngRe
   $stateProvider
 
   // setup an abstract state for the tabs directive
+  // this is ineffective cargo-culting :/
     .state('tab', {
     url: "/tab",
     abstract: true,

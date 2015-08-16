@@ -5,7 +5,7 @@ from util import deal
 import json 
 
 client = pymongo.MongoClient(config.mongo_dsn)
-db = client['trump']
+db = client['trumpz']
 from random import randrange
 
 
@@ -22,12 +22,23 @@ class Doc():
         """
         Inserts a JSON document into the collection.
         """
+        data = {}
         try:
 	    data = json.loads(doc)
+
         except:
             raise ValueError,"We were expecting a JSON document"
 
-        db[self.collection].insert(data)
+        if '_id' not in data:
+            data['_id'] = self.get_next_in_sequence()
+
+        self.add(data)
+
+    def add(self, data):
+        """
+        Adds a data structure to the collection
+        """
+	db[self.collection].insert(data)
 
     def recent_n(self,number):
         return list(db[self.collection].find().limit(number))
@@ -41,7 +52,7 @@ class Doc():
 
     def pick_one(self):
         """
-        Pick a random animal, vegetable, etc
+        Pick the most recent animal, vegetable, etc
         """
         return db[self.collection].find_one()
 

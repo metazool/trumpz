@@ -33,7 +33,7 @@ class StorableResource(Resource):
     
     def get(self, id):
         o = self.obj()
-        return [o.by_id(int(id))]
+        return o.by_id(int(id))
 
     def post(self):
         """
@@ -72,6 +72,11 @@ class ThisCard(StorableResource):
     obj = Card
 
 
+class Random(Resource):
+    def get(self):
+        c = Card()
+        return c.pick_n(1)
+
 class ThisHand(StorableResource):
     obj = Hand
     def post(self):
@@ -103,6 +108,7 @@ class Scoreboard(Resource):
 
 api.add_resource(Deck, '/deck/')
 api.add_resource(ThisCard, '/card/<id>', '/card/', '/card')
+api.add_resource(Random,'/random/')
 api.add_resource(PlayerDetails, '/user/', '/user/<id>')
 api.add_resource(Scoreboard, '/scoreboard/')
 api.add_resource(ThisHand, '/hand/', '/hand/<id>')
