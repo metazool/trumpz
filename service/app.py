@@ -27,6 +27,12 @@ class Deck(Resource):
         return c.show_all()
 
 
+class Search(Resource):
+    """Search for name text match on card"""
+    def get(self, text):
+	c= Card()
+	return c.by_name(text)	
+
 class StorableResource(Resource):
     host = config.host
     obj = Doc
@@ -111,6 +117,7 @@ api.add_resource(ThisCard, '/card/<id>', '/card/', '/card')
 api.add_resource(Random,'/random/')
 api.add_resource(PlayerDetails, '/user/', '/user/<id>')
 api.add_resource(Scoreboard, '/scoreboard/')
+api.add_resource(Search, '/search/<text>')
 api.add_resource(ThisHand, '/hand/', '/hand/<id>')
 
 
