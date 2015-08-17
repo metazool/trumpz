@@ -1,6 +1,9 @@
 angular.module('trumpz.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope, Cards) {
+  $scope.card = Cards.random().query();
+  console.log($scope.card);
+})
 
 .controller('CardsCtrl', function($scope, $resource, Cards) {
   // To listen for when this page is active (for example, to refresh data),
@@ -12,8 +15,11 @@ angular.module('trumpz.controllers', [])
 })
 
 .controller('CardDetailCtrl', function($scope, $stateParams, Cards) {
-  $scope.card = Cards.one($stateParams.cardId).query();
-  console.log($scope.card);
+  $scope.card = Cards.one($stateParams.cardId).get();
+  //.get( function(data) {
+//
+  //	console.log(data);
+   //});
 
 })
 

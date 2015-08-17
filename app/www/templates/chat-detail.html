@@ -6,9 +6,18 @@
 -->
 <ion-view view-title="{{card.name}}">
   <ion-content class="padding">
-    <img src="{{card.img}}" style="width: 64px; height: 64px">
+    <h1>{{ card.name }}</h1>
+    <img src="{{card.img}}" style="width: 240px; height: 240px">
+
+    <div ng-repeat="p in card.prior">
+	<ion-item href="#/tab/search/{{ p }}">{{ p }}</ion-item>
+    </div>
+
+    <div ng-repeat="p in card.next">
+	<ion-item href="#/tab/search/{{ p }}">{{ p }}</ion-item>
+    </div>
     <p>
-      {{card.name}}
+      {{card.description}}
     </p>
   </ion-content>
 </ion-view>
