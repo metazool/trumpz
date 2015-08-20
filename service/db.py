@@ -57,7 +57,13 @@ class Doc():
         return db[self.collection].find_one()
 
     def show_all(self):
-        return list(db[self.collection].find())
+        return list(db[self.collection].find().limit(50))
+
+    def show(self, start=None):
+	if start is not None:
+	    return list(db[self.collection].find({'_id':{'$gt':start}}).limit(50))
+	else:
+	    return list(db[self.collection].find().limit(50))
 
     def by_id(self, id):
         return db[self.collection].find_one({"_id": id})

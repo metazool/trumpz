@@ -22,9 +22,9 @@ class Deck(Resource):
     """
     Look at all the cards
     """
-    def get(self):
+    def get(self, id=None):
         c = Card()
-        return c.show_all()
+        return c.show(start=int(id))
 
 
 class Search(Resource):
@@ -112,7 +112,7 @@ class Scoreboard(Resource):
         pass 
 
 
-api.add_resource(Deck, '/deck/')
+api.add_resource(Deck, '/deck/','/deck/from/<id>')
 api.add_resource(ThisCard, '/card/<id>', '/card/', '/card')
 api.add_resource(Random,'/random/')
 api.add_resource(PlayerDetails, '/user/', '/user/<id>')
