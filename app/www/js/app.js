@@ -76,6 +76,16 @@ angular.module('trumpz', ['ionic', 'trumpz.controllers', 'trumpz.services','ngRe
         controller: 'AccountCtrl'
       }
     }
+  })
+
+  .state('tab.search', {
+    url: '/search/:text',
+    views: {
+      'tab-search': {
+        templateUrl: 'templates/chat-detail.html',
+        controller: 'CardSearchCtrl'
+      }
+    }
   });
 
   // if none of the above states are matched, use this as the fallback

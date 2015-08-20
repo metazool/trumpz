@@ -9,10 +9,13 @@ angular.module('trumpz.services', [])
      },
      one: function(cardId) { 
         console.log('http://trumpz.herokuapp.com/card/'+cardId);
-        return $resource('http://trumpz.herokuapp.com/card/'+cardId) 
+        return $resource('http://trumpz.herokuapp.com/card/'+cardId);
      },
      random: function() {
 	return $resource('http://trumpz.herokuapp.com/random/');
+     },
+     search: function(text) {
+	return $resource('http://trumpz.herokuapp.com/search/'+text);
      }
    };
 

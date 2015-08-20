@@ -1,7 +1,16 @@
 <ion-view view-title="DigiMonDex">
-  <ion-content class="padding">
-    
-    <div class="list card">
+<div>
+<div class="item item-divider">Search</div>
+      <div class="item item-body">
+<label class="item item-input">
+  <span class="input-label">Find</span>
+<form>
+  <input type="text" ng-model="searchterm">
+<input class="button button-block button-positive" type="submit" name="submit" value="Search" ng-click="search()">
+</label>
+  </div>
+   </div>
+<form>
       <div class="item item-divider">Random Digimon</div>
       <div class="item item-body">
 <div ng-repeat="c in card">
@@ -9,6 +18,4 @@
        <ion-item href="#/tab/chats/{{ c._id }}"><img src="{{c.img}}"></ion-item>
         </div>
       </div>
-    </div>
-  </ion-content>
 </ion-view>
