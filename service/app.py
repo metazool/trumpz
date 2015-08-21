@@ -22,7 +22,7 @@ class Deck(Resource):
     """
     Look at all the cards
     """
-    def get(self, id=None):
+    def get(self, id=230):
         c = Card()
         return c.show(start=int(id))
 
