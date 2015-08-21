@@ -3,6 +3,7 @@ import pymongo
 import config
 from util import deal
 import json 
+import re
 
 client = pymongo.MongoClient(config.mongo_dsn)
 db = client['trumpz']
@@ -70,6 +71,10 @@ class Doc():
     
     def by_name(self, name):
         return db[self.collection].find_one({'name':name})
+    
+    def match_name(self, name):
+	regx = re.compile(name)
+	return list(db[self.collection].find({'name': {'$regex' : regx}}))
 
 class Card(Doc):
     collection = 'deck'

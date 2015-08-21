@@ -31,7 +31,14 @@ class Search(Resource):
     """Search for name text match on card"""
     def get(self, text):
 	c= Card()
-	return c.by_name(text)	
+	cards = []
+	card = c.by_name(text)	
+	if card is None:
+	    cards = c.match_name(text)
+	else:
+	    cards.append(card)
+	return cards
+	    
 
 class StorableResource(Resource):
     host = config.host
